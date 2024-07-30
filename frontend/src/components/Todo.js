@@ -5,7 +5,23 @@ import axios from "axios";
 
 // As props "todo, removeTodo, completeTodo" vem atraves de argumentos
 
-const Todo = ({users}) => {
+const Todo = ({users, setUsers}) => {
+
+  const handleDelete = async (id) => {
+    await axios
+      .delete("http://localhost:8800/" + id)
+
+      // validação da função
+      .then(({ data }) => {
+        const newArray = users.filter((user) => user.id !== id);// criando uma Array com filtro de todos os elementos diferentes do informado
+
+        setUsers(newArray);
+        console.log(data);
+      })
+      .catch(({ data }) => console.log(data));
+
+  }
+
   return (
     // Estilo para "todos"
     // o "style" cria um visual especifico para as tarefas completadas
@@ -23,7 +39,7 @@ const Todo = ({users}) => {
             </div>
             <button className='complete'>Completar</button>
 
-            <button className='remove'>X</button>
+            <button className='remove' onClick={() => handleDelete(item.id)}>X</button>
           </div>
 
 

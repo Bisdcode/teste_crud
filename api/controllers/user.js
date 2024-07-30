@@ -28,14 +28,14 @@ export const addUser = (req, res) => {
     db.query(q, [values], (err) => {
         if (err) return res.json(err);
 
-        return res.status(200).json("Tarefa adicionada com sucesso.");
+        return res.status(200).json("Tarefa criada com sucesso.");
     });
 };
 
 //Método update
 
 export const updateUser = (req, res) => {
-    const q = "UPDATE todo SET `text`= ?, `category` = ?, WHERE `id` = ?";
+    const q = "UPDATE todo SET `text`= ?, `category` = ? WHERE `id` = ?";
 
     const values = [
         req.body.text,

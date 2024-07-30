@@ -100,7 +100,7 @@ function App() {
     {/* Estilização dos "todos" */}
     <div className="todo-list">
 
-      <Todo users={users}/>
+      <Todo users={users} setUsers={setUsers}/>
 
       {/* Vamos usar um map para percorrer nos "todos" */}
       {/* A funcionalidade do "search" tbm se encontra aqui, atraves do "filter" */}
