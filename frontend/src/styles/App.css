@@ -1,0 +1,95 @@
+* {
+    font-family: 'poppins', sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f4;
+    padding: 30px;
+    color: #333;
+    background-image: url("../img/slider.jpg");
+    background-position: center ;
+    /* ajustar a imagem */
+    background-size: cover;
+  
+  }
+  
+  .app {
+    max-width: 600px;
+    margin: 0 auto 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 30px;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  
+  input {
+    box-sizing: border-box; 
+  }
+  
+  button {
+    background-color: #333974;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: 0.8;
+    /* mudar a opacidade para a do "button:hover" */
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    opacity: 1;
+  }
+  
+  .todo-list {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555;
+  }
+  
+  .todo {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    /* disposição dos itens */
+    display: flex;
+    /* espaço entre os itens */
+    justify-content: space-between;
+    /* alinhar os botões na vertical */
+    align-items: center;
+  }
+  
+  .complete {
+    background-color: rgb(72, 204, 42);
+  }
+  
+  .remove {
+    background-color: rgb(214, 55, 55);
+  }
+  
+  .todo-form {
+    padding-bottom: 1.5rem;
+  }
+  
+  input, select {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    width: 100%;
+  }
