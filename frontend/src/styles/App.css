@@ -8,7 +8,6 @@
     color: #333;
     background-image: url("../img/slider.jpg");
     background-position: center ;
-    /* ajustar a imagem */
     background-size: cover;
   
   }
@@ -46,7 +45,6 @@
     border-radius: 3px;
     cursor: pointer;
     opacity: 0.8;
-    /* mudar a opacidade para a do "button:hover" */
     transition: 0.3s;
   }
   
@@ -66,18 +64,19 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    /* disposição dos itens */
     display: flex;
-    /* espaço entre os itens */
     justify-content: space-between;
-    /* alinhar os botões na vertical */
     align-items: center;
   }
   
   .complete {
-    background-color: rgb(72, 204, 42);
+    background-color: rgb(41, 130, 21);
   }
   
+  .edit {
+    background-color: #3c6093;
+  }
+
   .remove {
     background-color: rgb(214, 55, 55);
   }

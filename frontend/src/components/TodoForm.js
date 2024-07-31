@@ -1,57 +1,69 @@
-import React, {useRef} from 'react'; //*** PROJETO NOVO */
+import axios from "axios";
+import React, {useEffect, useRef} from 'react';
 
 // Formulario de adição de tarefas
-//{useState} serve para gerenciar o estado
 
-const TodoForm = ({onEdit}) => {
-  
-  //****PROJETO VELHO  */
+const TodoForm = ({getUsers, onEdit, setOnEdit}) => {
+  const ref = useRef();
 
-  // // gerenciar os dados de "titulo" e "categoria"
-  //   const [value, setValue] = useState("")
-  //   const [category, setCategory] = useState("")
+  useEffect(() => {
+    if (onEdit) { //se tem um item de edição
+      const user = ref.current;
 
+      user.text.value = onEdit.text;
+      user.category.value = onEdit.category;
+    }
+  }, [onEdit]);
 
-  
-  //   //funcão que vai cuidar do submit do formulario
-  //   const handleSubmit = (e) => {
-  //     //O formulario nao sera enviado da forma tradicional
-  //     e.preventDefault(); //argumento de evento
-        
-  //       if (!value || !category) return; //evitar erro caso não tenha dados preenchidos
+  const handleSubmit = async (e) => {
+    e.preventDefault();//para não recarregar a pagina
 
-  //       //adicionar 'todo'
-  //       addTodo(value, category)
-  //       //limpar os campos
-  //       setValue("");
-  //       setCategory("");
-  // }
+    const user = ref.current;
 
-  const ref = useRef(); //*** PROJETO NOVO
+    if (
+      !user.text.value ||
+      !user.category.value
+    ) {
+      return console.log("Preencha todos os campos!");
+    }
+
+    if (onEdit) {
+      await axios
+        .put("http://localhost:8800/" + onEdit.id, {
+          text: user.text.value,
+          category: user.category.value,
+        })
+        .then(({ data }) => console.log(data))
+        .catch(({ data }) => console.log(data));
+    } else {//se não for um item de edição
+      await axios
+        .post("http://localhost:8800", {
+          text: user.text.value,
+          category: user.category.value,
+        })
+        .then(({ data }) => console.log(data))
+        .catch(({ data }) => console.log(data));
+    }
+
+    user.text.value = "";
+    user.category.value = "";
+
+    setOnEdit(null);
+    getUsers();
+  };
 
   return (
-    <div className='todo-form' ref={ref}>
+    <div className='todo-form'>
       <h2>Criar tarefa</h2>
-      {/* Formulário */}
+
       {/* onSubmit vai disparar o "handleSubmit" */}
-      <form ref={ref}>
+      <form ref={ref} onSubmit={handleSubmit}>
 
         {/* inserir dados */}
-        <input name="text" type="text" placeholder='Digite o título'
-        // value={value} //conectando o state ao atributo de valor do campo (tornando possivel "limpar" os campos apos o submit)
-        
-        // onChange "assim que mudar o valor", acionar a funcao
-          //e(evento) target(input) value(valor/texto do input)
-        // onChange={(e) => setValue(e.target.value)} 
-        />
+        <input name="text" type="text" placeholder='Digite o título'/>
 
         {/* selecionar a categoria */}
-          {/* e(evento) target(input) value(categoria do input) */}
-        <select name="category"
-        // value={category} 
-        
-        // onChange={(e) => setCategory(e.target.value)}
-        >
+        <select name="category">
             <option value="">Selecione uma categoria</option>
             <option value="Trabalho">Trabalho</option>
             <option value="Pessoal">Pessoal</option>
